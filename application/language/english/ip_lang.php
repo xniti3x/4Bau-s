@@ -95,6 +95,7 @@ $lang = array(
     'column'                                       => 'Column',
     'company'                                      => 'Company',
     'confirm'                                      => 'Confirm',
+    'construction_project'                         => 'Construction Project',
     'confirm_deletion'                             => 'Confirm deletion',
     'contact_information'                          => 'Contact Information',
     'continue'                                     => 'Continue',
