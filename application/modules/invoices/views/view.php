@@ -460,6 +460,18 @@ if ($this->config->item('disable_read_only') == true) {
                                             echo 'disabled="disabled"';
                                         } ?>>
                                 </div>
+                                <div class="invoice-properties">
+                                    <label><?php _trans('Bauvorhaben'); ?></label>
+                                   <select name="bauvorhaben" id="bauvorhaben"
+                                        class="form-control input-sm simple-select">
+                                    <?php foreach ($bauvorhaben as $bv) { ?>
+                                        <option <?php check_select($bavorhaben_id,
+                                            $bv->id) ?> value="<?php echo $bv->id; ?>">
+                                            <?php echo $bv->bezeichnung; ?>
+                                        </option>
+                                    <?php } ?>
+                                </select>
+                                </div>
                             </div>
 
                             <?php if ($invoice->invoice_status_id != 1) { ?>

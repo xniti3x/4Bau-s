@@ -128,6 +128,7 @@ class Invoices extends Admin_Controller
                 'payment_methods/mdl_payment_methods',
                 'mdl_invoice_tax_rates',
                 'custom_fields/mdl_custom_fields',
+                'bauvorhaben/mdl_bauvorhaben',
             ]
         );
 
@@ -194,6 +195,8 @@ class Invoices extends Admin_Controller
                 'tax_rates' => $this->mdl_tax_rates->get()->result(),
                 'invoice_tax_rates' => $this->mdl_invoice_tax_rates->where('invoice_id', $invoice_id)->get()->result(),
                 'units' => $this->mdl_units->get()->result(),
+                'bavorhaben_id' => $this->mdl_bauvorhaben->getByInvoiceId($invoice_id),
+                'bauvorhaben' => $this->mdl_bauvorhaben->getAll(),
                 'payment_methods' => $this->mdl_payment_methods->get()->result(),
                 'custom_fields' => $custom_fields,
                 'custom_values' => $custom_values,
