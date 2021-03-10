@@ -9,11 +9,11 @@
 </head>
 <body>
 <header class="clearfix">
-
     <div id="logo">
         <?php echo invoice_logo_pdf(); ?>
     </div>
 
+  <div style="font-size:8pt; text-decoration:underline;"><?php echo $invoice->user_name." | ".$invoice->user_address_1." | ".$invoice->user_zip." ".$invoice->user_city; ?></div>
     <div id="client">
         <div>
             <b><?php _htmlsc(format_client($invoice)); ?></b>
@@ -32,14 +32,14 @@
         }
         if ($invoice->client_city || $invoice->client_state || $invoice->client_zip) {
             echo '<div>';
+            if ($invoice->client_zip) {
+                echo htmlsc($invoice->client_zip). ' ';
+            }
             if ($invoice->client_city) {
-                echo htmlsc($invoice->client_city) . ' ';
+                echo htmlsc($invoice->client_city);
             }
             if ($invoice->client_state) {
-                echo htmlsc($invoice->client_state) . ' ';
-            }
-            if ($invoice->client_zip) {
-                echo htmlsc($invoice->client_zip);
+                echo htmlsc($invoice->client_state);
             }
             echo '</div>';
         }
@@ -52,7 +52,6 @@
         if ($invoice->client_phone) {
             echo '<div>' . trans('phone_abbr') . ': ' . htmlsc($invoice->client_phone) . '</div>';
         } ?>
-
     </div>
     <div id="company">
         <div><b><?php _htmlsc($invoice->user_name); ?></b></div>
@@ -85,22 +84,16 @@
             echo '<div>' . get_country_name(trans('cldr'), $invoice->user_country) . '</div>';
         }
 
-        echo '<br/>';
-
         if ($invoice->user_phone) {
             echo '<div>' . trans('phone_abbr') . ': ' . htmlsc($invoice->user_phone) . '</div>';
         }
         if ($invoice->user_fax) {
             echo '<div>' . trans('fax_abbr') . ': ' . htmlsc($invoice->user_fax) . '</div>';
         }
+      echo "<br>";
         ?>
-    </div>
 
-</header>
-
-<main>
-
-    <div class="invoice-details clearfix">
+         <div class="invoice-details clearfix">
         <table>
             <tr>
                 <td><?php echo trans('invoice_date') . ':'; ?></td>
@@ -110,10 +103,6 @@
                 <td><?php echo trans('due_date') . ': '; ?></td>
                 <td><?php echo date_from_mysql($invoice->invoice_date_due, true); ?></td>
             </tr>
-            <tr>
-                <td><?php echo trans('amount_due') . ': '; ?></td>
-                <td><?php echo format_currency($invoice->invoice_balance); ?></td>
-            </tr>
             <?php if ($payment_method): ?>
                 <tr>
                     <td><?php echo trans('payment_method') . ': '; ?></td>
@@ -122,16 +111,37 @@
             <?php endif; ?>
         </table>
     </div>
+    </div>
 
-    <h1 class="invoice-title"><?php echo trans('invoice') . ' ' . $invoice->invoice_number; ?></h1>
+</header>
 
-    <table class="item-table">
+<main>
+
+
+    <h2 class=""><?php echo trans('invoice')." ".$invoice->invoice_number; ?></h2>
+  <p>Sehr geehrte Damen und Herren,<br>für die erbrachte Leistung erlauben wir uns Ihnen folgende Rechnung zu stellen:</p>
+    <br>
+  <table  width="100%" border="0" cellpadding="0" cellspacing="0">
+              <tr>
+                <td style="font-size:9pt"><b> <?php echo trans(' Rechnungsart') . ':</b> '.($custom_fields['invoice']['Rechnungsart']); ?></b>
+                <?php echo ""; ?>
+                </td>
+                <td style="font-size:9pt"><b><?php echo trans('Ausführung') . ':</b> '.($custom_fields['invoice']['Ausführung']); ?></b>
+                <?php echo ""; ?>
+                </td>
+                <td style="font-size:9pt"><b> <?php echo trans(' Bauvorhaben') . ': '; ?></b>
+                <?php echo $bauvorhaben[0]->bezeichnung; ?>
+                </td>
+             </tr>
+          </table>
+  <hr>
+  <table class="item-table">
         <thead>
         <tr>
             <th class="item-name"><?php _trans('item'); ?></th>
             <th class="item-desc"><?php _trans('description'); ?></th>
             <th class="item-amount text-right"><?php _trans('qty'); ?></th>
-            <th class="item-price text-right"><?php _trans('price'); ?></th>
+            <th class="item-price text-right">E-<?php _trans('price'); ?></th>
             <?php if ($show_item_discounts) : ?>
                 <th class="item-discount text-right"><?php _trans('discount'); ?></th>
             <?php endif; ?>
@@ -179,7 +189,7 @@
         <?php if ($invoice->invoice_item_tax_total > 0) { ?>
             <tr>
                 <td <?php echo($show_item_discounts ? 'colspan="5"' : 'colspan="4"'); ?> class="text-right">
-                    <?php _trans('item_tax'); ?>
+                    <?php _trans('MwSt.'); ?>
                 </td>
                 <td class="text-right">
                     <?php echo format_currency($invoice->invoice_item_tax_total); ?>
@@ -221,35 +231,23 @@
 
         <tr>
             <td <?php echo($show_item_discounts ? 'colspan="5"' : 'colspan="4"'); ?> class="text-right">
-                <b><?php _trans('total'); ?></b>
+                <b><?php _trans('Rechnungsbetrag'); ?></b>
             </td>
             <td class="text-right">
                 <b><?php echo format_currency($invoice->invoice_total); ?></b>
             </td>
         </tr>
-        <tr>
-            <td <?php echo($show_item_discounts ? 'colspan="5"' : 'colspan="4"'); ?> class="text-right">
-                <?php _trans('paid'); ?>
-            </td>
-            <td class="text-right">
-                <?php echo format_currency($invoice->invoice_paid); ?>
-            </td>
-        </tr>
-        <tr>
-            <td <?php echo($show_item_discounts ? 'colspan="5"' : 'colspan="4"'); ?> class="text-right">
-                <b><?php _trans('balance'); ?></b>
-            </td>
-            <td class="text-right">
-                <b><?php echo format_currency($invoice->invoice_balance); ?></b>
-            </td>
-        </tr>
+
         </tbody>
-    </table>
+
+</table>
 
 </main>
 
 <footer>
-    <?php if ($invoice->invoice_terms) : ?>
+<p style="color:333;">Bitte überweisen Sie den Betrag unter Angabe der Rechnungsnummer innerhalb der nächsten 14 Tage.</p>
+
+  <?php if ($invoice->invoice_terms) : ?>
         <div class="notes">
             <b><?php _trans('terms'); ?></b><br/>
             <?php echo nl2br(htmlsc($invoice->invoice_terms)); ?>
