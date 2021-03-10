@@ -4,6 +4,10 @@ $cv = $this->controller->view_data["custom_values"];
 
 <script>
     $(function () {
+
+        <?php $this->layout->load_view('bauvorhaben/script_select2_bauvorhaben_id.js'); ?>
+
+
         $('.item-task-id').each(function () {
             // Disable client chaning if at least one item already has a task id assigned
             if ($(this).val().length > 0) {
@@ -50,6 +54,7 @@ $cv = $this->controller->view_data["custom_values"];
         });
 
         $('#btn_save_invoice').click(function () {
+
             var items = [];
             var item_order = 1;
             $('table tbody.item').each(function () {
@@ -78,6 +83,8 @@ $cv = $this->controller->view_data["custom_values"];
                     invoice_terms: $('#invoice_terms').val(),
                     custom: $('input[name^=custom],select[name^=custom]').serializeArray(),
                     payment_method: $('#payment_method').val(),
+                    bauvorhaben: $('#select_bauvorhaben').val(),
+
                 },
                 function (data) {
                     <?php echo(IP_DEBUG ? 'console.log(data);' : ''); ?>
@@ -452,7 +459,7 @@ if ($this->config->item('disable_read_only') == true) {
                                     </select>
                                 </div>
 
-                                <div class="invoice-properties">
+                                <div class="hidden invoice-properties">
                                     <label><?php _trans('invoice_password'); ?></label>
                                     <input type="text" id="invoice_password" class="form-control input-sm"
                                            value="<?php _htmlsc($invoice->invoice_password); ?>"
@@ -461,17 +468,22 @@ if ($this->config->item('disable_read_only') == true) {
                                         } ?>>
                                 </div>
                                 <div class="invoice-properties">
-                                    <label><?php _trans('Bauvorhaben'); ?></label>
-                                   <select name="bauvorhaben" id="bauvorhaben"
-                                        class="form-control input-sm simple-select">
-                                    <?php foreach ($bauvorhaben as $bv) { ?>
-                                        <option <?php check_select($bavorhaben_id,
-                                            $bv->id) ?> value="<?php echo $bv->id; ?>">
-                                            <?php echo $bv->bezeichnung; ?>
-                                        </option>
-                                    <?php } ?>
-                                </select>
+                                <div class="form-group has-feedback">
+                                    <label for="select_bauvorhaben"><?php _trans('bauvorhaben'); ?></label>
+                                    <div class="input-group">
+
+                                        <select name="bauvorhaben_id" id="select_bauvorhaben" class="bauvorhaben-id-select form-control"
+                                                autofocus="autofocus">
+                                            <?php   if (!empty($bauvorhaben)) : ?>
+                                                <option value="<?php echo($bauvorhaben[0]->id); ?>"><?php _htmlsc($bauvorhaben[0]->bezeichnung); ?></option>
+                                            <?php endif; ?>
+                                        </select>
+                                    </div>
                                 </div>
+                                </div>
+
+
+
                             </div>
 
                             <?php if ($invoice->invoice_status_id != 1) { ?>

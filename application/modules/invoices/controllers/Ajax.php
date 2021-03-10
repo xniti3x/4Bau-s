@@ -107,6 +107,7 @@ class Ajax extends Admin_Controller
                 'payment_method' => $this->input->post('payment_method'),
                 'invoice_discount_amount' => standardize_amount($invoice_discount_amount),
                 'invoice_discount_percent' => standardize_amount($invoice_discount_percent),
+                'bauvorhaben_id' => $this->input->post('bauvorhaben'),
             ];
 
             // check if status changed to sent, the feature is enabled and settings is set to sent
