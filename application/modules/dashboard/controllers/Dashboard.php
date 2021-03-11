@@ -23,6 +23,7 @@ class Dashboard extends Admin_Controller
         $this->load->model('quotes/mdl_quotes');
         $this->load->model('projects/mdl_projects');
         $this->load->model('tasks/mdl_tasks');
+        $this->load->model('clients/mdl_clients');
 
         $quote_overview_period = get_setting('quote_overview_period');
         $invoice_overview_period = get_setting('invoice_overview_period');
@@ -41,6 +42,7 @@ class Dashboard extends Admin_Controller
                 'projects' => $this->mdl_projects->get_latest()->get()->result(),
                 'tasks' => $this->mdl_tasks->get_latest()->get()->result(),
                 'task_statuses' => $this->mdl_tasks->statuses(),
+                'best_clients' => $this->mdl_clients->getImportantClient(),
             )
         );
 

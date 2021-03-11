@@ -261,4 +261,17 @@ class Mdl_Clients extends Response_Model
         return $this->db->insert_id();
     }
 
+    public function getImportantClient(){
+        $res=$this->db->query("
+            SELECT ip_clients.*,sum(ip_invoice_amounts.invoice_paid) as total_sum
+            FROM   ip_invoice_amounts,ip_invoices,ip_clients
+            where  ip_invoice_amounts.invoice_id=ip_invoices.invoice_id AND
+                   ip_invoices.client_id=ip_clients.client_id
+            group by ip_invoices.client_id
+            order by total_sum DESC
+            limit 10")->result();
+
+        return $res;
+    }
+
 }

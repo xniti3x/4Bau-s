@@ -78,12 +78,14 @@
 
 
         });
-        //set clientid befor create invoice
-        clientid=$('#create_invoice_client_id').val();
+
         // Creates the invoice
         $('#invoice_create_confirm').click(function () {
             // Posts the data to validate and create the invoice;
-            // will create the new client if necessar
+            if(clientid===null){
+                clientid=$('#create_invoice_client_id').val();
+            }
+
             $.post("<?php echo site_url('invoices/ajax/create'); ?>", {
                     client_id: clientid,
                     invoice_date_created: $('#invoice_date_created').val(),
@@ -227,7 +229,7 @@
             </div>
             <div class="btn-group align-items-left">
                 <button class="hidden btn btn-success" id="btn_client_save" type="button">
-                    <i class="fa fa-repeat"></i> <?php _trans('save'); ?>
+                    <i class="fa fa-save"></i> <?php _trans('save'); ?>
                 </button>
             </div>
             <div class="btn-group">
