@@ -77,7 +77,7 @@
                     </ul>
                 </li>
 
-                <li class="dropdown <?php echo get_setting('projects_enabled') == 1 ?: 'hidden'; ?>">
+                <li class="hidden dropdown <?php echo get_setting('projects_enabled') == 1 ?: 'hidden'; ?>">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-caret-down"></i> &nbsp;
                         <span class="hidden-md"><?php _trans('tasks'); ?></span>
@@ -91,7 +91,17 @@
                         <li><?php echo anchor('projects/index', trans('view_projects')); ?></li>
                     </ul>
                 </li>
-
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-caret-down"></i> &nbsp;
+                        <span class="hidden-md"><?php _trans('Bauvorhaben'); ?></span>
+                        <i class="visible-md-inline fa fa-bar-chart"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><?php echo anchor('bauvorhaben/index', trans('Bauvorhaben liste')); ?></li>
+                        <li><?php echo anchor('bauvorhaben/add', trans('Bauvorhaben Hinzufügen')); ?></li>
+                    </ul>
+                </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-caret-down"></i> &nbsp;
@@ -105,20 +115,6 @@
                         <li><?php echo anchor('reports/sales_by_year', trans('sales_by_date')); ?></li>
                     </ul>
                 </li>
-
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="fa fa-caret-down"></i> &nbsp;
-                        <span class="hidden-md"><?php _trans('Bauvorhaben'); ?></span>
-                        <i class="visible-md-inline fa fa-bar-chart"></i>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><?php echo anchor('bauvorhaben/index', trans('Bauvorhaben liste')); ?></li>
-                        <li><?php echo anchor('bauvorhaben/add', trans('Bauvorhaben Hinzufügen')); ?></li>
-                    </ul>
-                </li>
-
-
             </ul>
 
             <?php if (isset($filter_display) and $filter_display == true) { ?>

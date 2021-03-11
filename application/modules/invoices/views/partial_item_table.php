@@ -314,7 +314,7 @@
                     <i class="fa fa-database"></i>
                     <?php _trans('add_product'); ?>
                 </a>
-                <a href="#" class="btn_add_task btn btn-sm btn-default">
+                <a href="#" class="hidden btn_add_task btn btn-sm btn-default">
                     <i class="fa fa-database"></i> <?php _trans('add_task'); ?>
                 </a>
             <?php } ?>

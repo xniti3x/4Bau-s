@@ -255,102 +255,46 @@
         </div>
     </div>
 
-    <?php if (get_setting('projects_enabled') == 1) : ?>
         <div class="row">
             <div class="col-xs-12 col-md-6">
-
                 <div id="panel-projects" class="panel panel-default">
-
                     <div class="panel-heading">
-                        <b><i class="fa fa-list fa-margin"></i> <?php _trans('projects'); ?></b>
+                        <b><i class="fa fa-list fa-margin"></i> <?php _trans('Umsatz nach Kunde'); ?></b>
                     </div>
-                    <div class="table-responsive">
-                        <table class="table table-hover table-striped table-condensed no-margin">
-                            <thead>
-                            <tr>
-                                <th><?php _trans('project_name'); ?></th>
-                                <th><?php _trans('client_name'); ?></th>
-                            </tr>
-                            </thead>
 
-                            <tbody>
-                            <?php foreach ($projects as $project) { ?>
-                                <tr>
-                                    <td>
-                                        <?php echo anchor('projects/view/' . $project->project_id, htmlsc($project->project_name)); ?>
-                                    </td>
-                                    <td>
-                                        <?php echo anchor('clients/view/' . $project->client_id, htmlsc(format_client($project))); ?>
-                                    </td>
-                                </tr>
-                            <?php } ?>
-                        		<tr>
-                            		<td colspan="6" class="text-right small">
-                                		<?php echo anchor('projects/index', trans('view_all')); ?>
-                            		</td>
-                        		</tr>
-                            </tbody>
-
-                        </table>
-                    </div>
+                    <div class="col-xs-12 col-md-12" id="chart"></div>
+                    <script>
+                        var options = {
+                        series: [{
+                        name:"€",
+                        data: [<?php foreach($best_clients as $bs){echo "'".($bs->total_sum)."€',";} ?>]
+                        }],
+                        chart: {
+                        type: 'bar',
+                        height: 350
+                        },
+                        plotOptions: {
+                        bar: {
+                            horizontal: true,
+                        }
+                        },
+                        dataLabels: {
+                        enabled: false
+                        },
+                        xaxis: {
+                            categories: [<?php foreach($best_clients as $bs){echo "'".$bs->client_name."',";} ?>],
+                            labels: {
+                                formatter: function (value) {
+                                return value+",00 €";
+                                }
+                            }
+                        }
+                        };
+                        var chart = new ApexCharts(document.querySelector("#chart"), options);
+                        chart.render();
+                    </script>
                 </div>
-
-            </div>
-            <div class="col-xs-12 col-md-6">
-
-                <div id="panel-recent-invoices" class="panel panel-default">
-
-                    <div class="panel-heading">
-                        <b><i class="fa fa-check-square-o fa-margin"></i> <?php _trans('tasks'); ?></b>
-                    </div>
-
-                    <div class="table-responsive">
-                        <table class="table table-hover table-striped table-condensed no-margin">
-
-                            <thead>
-                            <tr>
-                                <th><?php _trans('status'); ?></th>
-                                <th><?php _trans('task_name'); ?></th>
-                                <th><?php _trans('task_finish_date'); ?></th>
-                                <th><?php _trans('project'); ?></th>
-                            </tr>
-                            </thead>
-
-                            <tbody>
-                            <?php foreach ($tasks as $task) { ?>
-                                <tr>
-                                    <td>
-                                    <span class="label <?php echo $task_statuses["$task->task_status"]['class']; ?>">
-                                        <?php echo $task_statuses["$task->task_status"]['label']; ?>
-                                    </span>
-                                    </td>
-                                    <td>
-                                        <?php echo anchor('tasks/form/' . $task->task_id, htmlsc($task->task_name)) ?>
-                                    </td>
-                                    <td>
-                                    <span class="<?php if ($task->is_overdue) { ?>font-overdue<?php } ?>">
-                                        <?php echo date_from_mysql($task->task_finish_date); ?>
-                                    </span>
-                                    </td>
-                                    <td>
-                                        <?php echo !empty($task->project_id) ? anchor('projects/view/' . $task->project_id, htmlsc($task->project_name)) : ''; ?>
-                                    </td>
-                                </tr>
-                            <?php } ?>
-                        		<tr>
-                            		<td colspan="6" class="text-right small">
-                                		<?php echo anchor('tasks/index', trans('view_all')); ?>
-                            		</td>
-                        		</tr>
-                            </tbody>
-
-                        </table>
-                    </div>
-
-                </div>
-
             </div>
         </div>
-    <?php endif; ?>
 
 </div>
