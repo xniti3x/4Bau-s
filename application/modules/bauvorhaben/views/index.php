@@ -1,10 +1,6 @@
 
 <div id="headerbar">
-<<<<<<< HEAD
     <h1 class="headerbar-title"><?php _trans('construction_project'); ?></h1>
-=======
-    <h1 class="headerbar-title"><?php _trans('Bauvorhaben'); ?></h1>
->>>>>>> 35c98ae9acbc5b79827cb5ee4b8e317672cfc925
 
     <div class="headerbar-item pull-right">
         <a class="btn btn-sm btn-primary" href="<?php echo site_url('bauvorhaben/add'); ?>">
@@ -22,11 +18,7 @@
   <thead>
     <tr>
       <th scope="col">ID</th>
-<<<<<<< HEAD
       <th scope="col"><?php _trans("label"); ?></th>
-=======
-      <th scope="col">Bezeichnung</th>
->>>>>>> 35c98ae9acbc5b79827cb5ee4b8e317672cfc925
       <th scope="col">Options</th>
     </tr>
   </thead>
