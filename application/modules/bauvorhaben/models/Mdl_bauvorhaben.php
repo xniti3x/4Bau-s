@@ -41,8 +41,8 @@ class Mdl_Bauvorhaben extends Response_Model
         $this->db->where('id', $id);
         return $this->db->get($this->table)->result();
     }
-    public function getByInvoiceId($invoice_id){
-       return $this->db->query("select bauvorhaben_id from ip_invoices where invoice_id=".$invoice_id)->result_object();
+    public function getById($id){
+       return $this->db->query("select * from ip_bauvorhaben where id=".$id)->result();
     }
     /*
     function for update $this->table.

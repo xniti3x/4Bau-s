@@ -100,6 +100,50 @@ class Ajax extends Admin_Controller
         $this->mdl_settings->save('enable_permissive_search_clients', $permissiveSearchClients);
     }
 
+    public function save_client(){
+
+        $this->load->model('clients/mdl_clients');
+        $client=null;
+        $message="";
+        $status=404;
+
+        $data = array(
+        'client_date_created' => 'NOW()',
+        'client_name' => $this->input->post('client_name'),
+        'client_surname' => $this->input->post('client_surname'),
+        'client_address_1' => $this->input->post('client_address_1'),
+        'client_city' => $this->input->post('client_city'),
+        'client_zip' => $this->input->post('client_zip'),
+        "client_language" => 'system',
+        'client_active' => '1'
+        );
+        $check = $this->db->get_where('ip_clients', array(
+                'client_name' => $this->input->post('client_name'),
+                'client_surname' => $this->input->post('client_surname')
+            ))->result();
+
+            if(!empty($check)){
+                $message = trans('client_already_exists');
+                $status=201;
+            }else{
+                if ($this->mdl_clients->run_validation()) {
+                    $last_id= $this->mdl_clients->save(null,$data);
+                    $client=$this->db->get_where('ip_clients',array('client_id'=>$last_id))->result();
+                    $status=200;
+                }else{
+                    $message="validation error. Bitte füllen sie die felder aus.";
+                }
+            }
+         $response[]=[
+             'client' => $client,
+             'status' => $status,
+             'message' => $message
+        ];
+
+        echo json_encode($response);
+
+    }
+
     public function save_client_note()
     {
         $this->load->model('clients/mdl_client_notes');

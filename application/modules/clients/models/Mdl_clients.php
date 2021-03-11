@@ -255,4 +255,10 @@ class Mdl_Clients extends Response_Model
         return $this;
     }
 
+    public function create($client)
+    {
+        $this->db->insert('ip_clients', $client);
+        return $this->db->insert_id();
+    }
+
 }

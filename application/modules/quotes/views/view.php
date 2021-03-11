@@ -325,7 +325,7 @@ $cv = $this->controller->view_data["custom_values"];
                                         <?php } ?>
                                     </select>
                                 </div>
-                                <div class="quote-properties">
+                                <div class="hidden quote-properties">
                                     <label for="quote_password">
                                         <?php _trans('quote_password'); ?>
                                     </label>

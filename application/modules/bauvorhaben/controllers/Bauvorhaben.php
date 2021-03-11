@@ -11,18 +11,13 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
  */
 
 /**
-<<<<<<< HEAD
  * Class Bauvorhaben
-=======
- * Class Clients
->>>>>>> 35c98ae9acbc5b79827cb5ee4b8e317672cfc925
  */
 class Bauvorhaben extends Admin_Controller
 {
     public function __construct() {
         parent::__construct();
         $this->load->model('mdl_bauvorhaben');
-<<<<<<< HEAD
     }
 
     public function index() {
@@ -31,23 +26,6 @@ class Bauvorhaben extends Admin_Controller
         $this->layout->buffer("content","bauvorhaben/index");
         $this->layout->render();
 
-=======
-        $this->load->library('session');
-    }
-    /*
-    function for manage Bauvorhaben.
-    return all Bauvorhabens.
-    created by your name
-    created at 08-03-21.
-	santosh salve
-    */
-    public function index() {
-        $data['bauvorhaben'] = $this->mdl_bauvorhaben->getAll();
-        $this->layout->buffer("content","bauvorhaben/index",$data);
-        $this->layout->render();
-
-        //$this->load->view('bauvorhaben/index', $data);
->>>>>>> 35c98ae9acbc5b79827cb5ee4b8e317672cfc925
     }
     /*
     function for  add Bauvorhaben get
@@ -105,10 +83,6 @@ class Bauvorhaben extends Admin_Controller
     */
     public function delete($bauvorhaben_id) {
         $this->mdl_bauvorhaben->delete($bauvorhaben_id);
-<<<<<<< HEAD
-=======
-        $this->session->set_flashdata('success', 'bauvorhaben deleted');
->>>>>>> 35c98ae9acbc5b79827cb5ee4b8e317672cfc925
         redirect('bauvorhaben/index');
     }
 }
