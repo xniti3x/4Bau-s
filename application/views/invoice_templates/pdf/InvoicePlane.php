@@ -130,7 +130,7 @@
                 <?php echo ""; ?>
                 </td>
                 <td style="font-size:9pt"><b> <?php echo trans(' Bauvorhaben') . ': '; ?></b>
-                <?php echo $bauvorhaben[0]->bezeichnung; ?>
+                <?php if($bauvorhaben){echo $bauvorhaben[0]->bezeichnung; }?>
                 </td>
              </tr>
           </table>
