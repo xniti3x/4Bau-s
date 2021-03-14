@@ -627,7 +627,7 @@ $lang = array(
     'project'                                      => 'Projekt',
     'projects'                                     => 'Projekte',
     'projects_form'                                => 'Projekte',
-    'create_project'                               => 'Create Project',
+    'create_project'                               => 'Projekt erstellen',
     'create_task'                                  => 'Aufgabe erstellen',
     'view_projects'                                => 'View Projects',
     'view_tasks'                                   => 'View Tasks',
@@ -721,5 +721,12 @@ $lang = array(
 
     // Types
     'true'                                         => 'Wahr',
-    'false'                                        => 'Falsch'
+    'false'                                        => 'Falsch',
+    // Bauvorhaben
+    'label'                                        => 'Bezeichnung',
+    'construction_project'                         => 'Bauvorhaben',
+    'add_construction_project'                     => 'Bauvorhaben erstellen',
+    'construction_project_list'                    => 'Bauvorhaben Liste'
+
+
 );

@@ -1,4 +1,3 @@
-
 <div id="headerbar">
     <h1 class="headerbar-title"><?php _trans('construction_project'); ?></h1>
 

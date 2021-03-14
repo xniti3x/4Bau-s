@@ -94,14 +94,14 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-caret-down"></i> &nbsp;
-                        <span class="hidden-md"><?php _trans('Bauvorhaben'); ?></span>
+                        <span class="hidden-md"><?php  _trans('construction_project'); ?></span>
                         <i class="visible-md-inline fa fa-bar-chart"></i>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="#" class="create-bauvorhaben"><?php _trans('Bauvorhaben Hinzufügen'); ?></a></li>
-                        <li><?php echo anchor('bauvorhaben/index', trans('Bauvorhaben liste')); ?></li>
+                        <li><a href="#" class="create-bauvorhaben"><?php _trans('add_construction_project'); ?></a></li>
+                        <li><?php echo anchor('bauvorhaben/index', trans('construction_project_list')); ?></li>
                         <!--
-                        <li><?php echo anchor('bauvorhaben/add', trans('Bauvorhaben Hinzufügen')); ?></li>
+                        <li><?php echo anchor('bauvorhaben/add', trans('add_construction_project')); ?></li>
                         -->
                     </ul>
                 </li>
