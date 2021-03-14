@@ -49,7 +49,7 @@
                     <input type="text" name="item_price" class="input-sm form-control amount" value="">
                 </div>
             </td>
-            <td class="td-amount">
+            <td class="hidden td-amount">
                 <div class="input-group">
                     <span class="input-group-addon"><?php _trans('item_discount'); ?></span>
                     <input type="text" name="item_discount_amount" class="input-sm form-control amount"
@@ -114,7 +114,7 @@
                 <span><?php _trans('subtotal'); ?></span><br/>
                 <span name="subtotal" class="amount"></span>
             </td>
-            <td class="td-amount td-vert-middle">
+            <td class="hidden td-amount td-vert-middle">
                 <span><?php _trans('discount'); ?></span><br/>
                 <span name="item_discount_total" class="amount"></span>
             </td>
@@ -192,7 +192,7 @@
                             } ?>>
                     </div>
                 </td>
-                <td class="td-amount">
+                <td class="hidden td-amount">
                     <div class="input-group">
                         <span class="input-group-addon"><?php _trans('item_discount'); ?></span>
                         <input type="text" name="item_discount_amount" class="input-sm form-control amount"
@@ -276,7 +276,7 @@
                         <?php echo format_currency($item->item_subtotal); ?>
                     </span>
                 </td>
-                <td class="td-amount td-vert-middle">
+                <td class="hidden td-amount td-vert-middle">
                     <span><?php _trans('discount'); ?></span><br/>
                     <span name="item_discount_total" class="amount">
                         <?php echo format_currency($item->item_discount); ?>
@@ -360,8 +360,8 @@
                 </td>
             </tr>
             <tr>
-                <td class="td-vert-middle"><?php _trans('discount'); ?></td>
-                <td class="clearfix">
+                <td class="hidden td-vert-middle"><?php _trans('discount'); ?></td>
+                <td class="hidden clearfix">
                     <div class="discount-field">
                         <div class="input-group input-group-sm">
                             <input id="invoice_discount_amount" name="invoice_discount_amount"
@@ -373,7 +373,7 @@
                             <div class="input-group-addon"><?php echo get_setting('currency_symbol'); ?></div>
                         </div>
                     </div>
-                    <div class="discount-field">
+                    <div class="hidden discount-field">
                         <div class="input-group input-group-sm">
                             <input id="invoice_discount_percent" name="invoice_discount_percent"
                                    value="<?php echo format_amount($invoice->invoice_discount_percent != 0 ? $invoice->invoice_discount_percent : ''); ?>"

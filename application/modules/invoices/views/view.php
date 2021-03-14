@@ -22,6 +22,13 @@ $cv = $this->controller->view_data["custom_values"];
             );
         });
 
+        $('#btn_add_bauvorhaben').click(function () {
+            $('#modal-placeholder').load(
+                "<?php echo site_url('bauvorhaben/ajax/modal_bauvorhaben_lookups/' . $invoice_id); ?>/" +
+                Math.floor(Math.random() * 1000)
+            );
+        });
+
         $('.btn_add_task').click(function () {
             $('#modal-placeholder').load(
                 "<?php echo site_url('tasks/ajax/modal_task_lookups/' . $invoice_id); ?>/" +
@@ -469,6 +476,7 @@ if ($this->config->item('disable_read_only') == true) {
                                 </div>
                                 <div class="invoice-properties">
                                 <div class="form-group has-feedback">
+                                    <a id="btn_add_bauvorhaben" class="btn"><i class="fa fa-plus"></i></a>
                                     <label for="select_bauvorhaben"><?php _trans('bauvorhaben'); ?></label>
                                     <div class="input-group">
 

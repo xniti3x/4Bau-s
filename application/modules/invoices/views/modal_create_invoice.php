@@ -42,7 +42,7 @@
 
 
         });
-        // Toggle on/off permissive search on clients names
+
         $('#btn_add_client').click(function () {
 
             $('#create_invoice_body').addClass("hidden");
@@ -54,6 +54,7 @@
             $('#btn_client_back').removeClass("hidden");
             $('#client_add_error').removeClass("hidden");
         });
+
 
         $('#btn_client_save').click(function(){
 

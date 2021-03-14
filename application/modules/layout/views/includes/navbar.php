@@ -98,8 +98,11 @@
                         <i class="visible-md-inline fa fa-bar-chart"></i>
                     </a>
                     <ul class="dropdown-menu">
+                        <li><a href="#" class="create-bauvorhaben"><?php _trans('Bauvorhaben Hinzufügen'); ?></a></li>
                         <li><?php echo anchor('bauvorhaben/index', trans('Bauvorhaben liste')); ?></li>
+                        <!--
                         <li><?php echo anchor('bauvorhaben/add', trans('Bauvorhaben Hinzufügen')); ?></li>
+                        -->
                     </ul>
                 </li>
                 <li class="dropdown">
