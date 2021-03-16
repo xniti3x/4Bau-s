@@ -203,14 +203,14 @@
         </div>
         <div id="client_add_error" class="p-3 mb-2 bg-danger text-dark"></div>
         <div class="modal-footer">
-            <div class="btn-group float-left">
-                <button class="hidden btn btn-danger" id="btn_client_back" type="button">
-                    <i class="fa fa-repeat"></i> <?php _trans('back'); ?>
-                </button>
-            </div>
             <div class="btn-group align-items-left">
                 <button class="hidden btn btn-success" id="btn_client_save" type="button">
                     <i class="fa fa-save"></i> <?php _trans('save'); ?>
+                </button>
+            </div>
+            <div class="btn-group float-left">
+                <button class="hidden btn btn-danger" id="btn_client_back" type="button">
+                    <i class="fa fa-repeat"></i> <?php _trans('back'); ?>
                 </button>
             </div>
             <div class="btn-group">
